@@ -4,4 +4,5 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public enum DeliveryStatus {
+    COMP,
 }
