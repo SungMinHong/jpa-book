@@ -13,6 +13,7 @@ public class ItemRepository {
     
     private final EntityManager em;
     
+    // 실무에서는 merge 절대 쓰지 말자.
     public void save(final Item item) {
         if (item.getId() == null) {
             em.persist(item);
