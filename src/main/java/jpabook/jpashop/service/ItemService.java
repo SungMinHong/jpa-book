@@ -36,7 +36,7 @@ public class ItemService {
         return repository.findOne(itemId);
     }
     
-    public List<Item> findAll() {
+    public List<Item> findItems() {
         return repository.findAll();
     }
     

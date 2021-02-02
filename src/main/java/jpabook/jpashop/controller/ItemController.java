@@ -5,8 +5,6 @@ import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +12,6 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
 public class ItemController {
     private final ItemService itemService;
 
@@ -39,7 +36,7 @@ public class ItemController {
 
     @GetMapping("items")
     public String list(Model model) {
-        final List<Item> items = itemService.findAll();
+        final List<Item> items = itemService.findItems();
         model.addAttribute("items", items);
         return "items/itemList";
     }
@@ -68,7 +65,7 @@ public class ItemController {
         book.setStockQuantity(form.getStockQuantity());
         book.setAuthor(form.getAuthor());
         book.setIsbn(form.getIsbn());
-        
+
         itemService.save(book);
         return "redirect:/items";
     }
