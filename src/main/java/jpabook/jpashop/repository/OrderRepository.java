@@ -60,4 +60,13 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+                "SELECT o FROM Order AS o" +
+                        " JOIN FETCH o.member AS m" +
+                        " JOIN FETCH o.delivery AS d"
+                , Order.class
+        ).getResultList();
+    }
+
 }
