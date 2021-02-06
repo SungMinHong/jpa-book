@@ -5,6 +5,7 @@ import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
+import jpabook.jpashop.repository.SimpleOrderQueryDTO;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +53,11 @@ public class OrderSimpleApiController {
         return orderRepository.findAllWithMemberDelivery().stream()
                 .map(SimpleOrderDTO::new)
                 .collect(toList());
+    }
+    
+    @GetMapping("/api/v4/simple-orders")
+    public List<SimpleOrderQueryDTO> ordersV4() {
+        return orderRepository.findOrderDtos();
     }
 
     @Getter
