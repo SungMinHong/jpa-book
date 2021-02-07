@@ -36,7 +36,7 @@ public class initDB {
 
             Book book1 = createBook("JPA1 BOOK", 10000, 100);
 
-            Book book2 = createBook("JPA1 BOOK", 20000, 200);
+            Book book2 = createBook("JPA2 BOOK", 20000, 200);
 
             OrderItem orderItem1 = OrderItem.createOrderItem(book1, book1.getPrice(), 1);
             OrderItem orderItem2 = OrderItem.createOrderItem(book2, book2.getPrice(), 2);
@@ -66,7 +66,7 @@ public class initDB {
 
             Book book1 = createBook("SPRING1 BOOK", 20000, 200);
 
-            Book book2 = createBook("SPRING1 BOOK", 40000, 300);
+            Book book2 = createBook("SPRING2 BOOK", 40000, 300);
 
             OrderItem orderItem1 = OrderItem.createOrderItem(book1, book1.getPrice(), 3);
             OrderItem orderItem2 = OrderItem.createOrderItem(book2, book2.getPrice(), 4);
