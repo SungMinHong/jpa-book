@@ -69,6 +69,7 @@ public class OrderRepository {
         ).getResultList();
     }
     
+    // 굳이 쓰려면 이 곳에 두지말고 DTO용 쿼리 Repository를 만들고 거기에 모아두어야 함.
     public List<SimpleOrderQueryDTO> findOrderDtos() {
         return em.createQuery(
                 "SELECT new jpabook.jpashop.repository.SimpleOrderQueryDTO(o.id, m.name, o.orderDate, o.status, d.address)" +

@@ -55,6 +55,8 @@ public class OrderSimpleApiController {
                 .collect(toList());
     }
     
+    // API 스펙이 Repository 에 영향을 주니 지양해야함.
+    // 굳이 쓰려면 DTO용 쿼리 Repository를 만들고 거기에 모아두어야 함.
     @GetMapping("/api/v4/simple-orders")
     public List<SimpleOrderQueryDTO> ordersV4() {
         return orderRepository.findOrderDtos();
