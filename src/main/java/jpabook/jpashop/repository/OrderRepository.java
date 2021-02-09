@@ -83,7 +83,7 @@ public class OrderRepository {
     // Order 중복을 막기 위해서는 distinct 키워드를 반드시 써야한다. 
     // sql의 distinct와는 다르다. sql에서는 모든 칼럼의 값이 동일해야 중복으로 판별하고 제거한다.
     // jpa 에서는 distinct가 있었다면 application 에서 id가 중복되는 경우 합쳐주는 작업을 한다.
-    
+
     // 주의할 점
     // 1. 페이징을 하면 안된다. 쓴다면 WARN이 뜨면서 실제로 페이징 쿼리는 빠지고 애플리케이션에서 페이지네이션을 해버린다. 결국 WAS 메모리 사용양을 올린다. 전체가 100만개라면 그대로 was로 들고와서 정렬을 한다. 
     // 결론적으로 oneToMany 관계를 조회할 때는 페이징 절대 쓰지말자. 시간 폭탄이다.
@@ -97,5 +97,16 @@ public class OrderRepository {
                         " join fetch oi.item AS i",
                 Order.class
         ).getResultList();
+    }
+
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                "SELECT o FROM Order AS o" +
+                        " JOIN FETCH o.member AS m" +
+                        " JOIN FETCH o.delivery AS d"
+                , Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
     }
 }
