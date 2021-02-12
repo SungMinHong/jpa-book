@@ -109,4 +109,15 @@ public class OrderRepository {
                 .setMaxResults(limit)
                 .getResultList();
     }
+
+    public List<Order> findAllWithMemberDelivery2(int offset, int limit) {
+        return em.createQuery(
+                "SELECT o FROM Order AS o" +
+                        " JOIN o.member AS m" +
+                        " JOIN o.delivery AS d"
+                , Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }
