@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
@@ -81,7 +80,7 @@ public class OrderApiController {
         return orderQueryRepository.findAllV5();
     }
 
-    // 쿼리 한번으로 가능하지만 애플리케이션 join 로직이 늘어남.  
+    // 쿼리 한번으로 가능하지만 애플리케이션 join 로직이 늘어남. 실무에서 잘 사용안함. 딱히 성능 향상이 미비함  
     @GetMapping("/api/v6/orders")
     public List<OrderQueryDto> ordersV6() {
         List<OrderFlatDTO> flats = orderQueryRepository.findAllV6_flat();

@@ -12,7 +12,11 @@ spring:
 #        show_sql: true
         format_sql: true
         default_batch_fetch_size: 100
+# OSIV 속성 기본은 true
+#    open-in-view: false
 logging:
   level: 
     org.hibernate.SQL: debug
 #    org.hibernate.type: trace
+
+# 고객 서비스의 실시간 API는 OSIV를 끄고, ADMIN 처럼 커넥션을 많이 사용하지 않는 곳에서는 OSIV를 키는게 좋겠다.
